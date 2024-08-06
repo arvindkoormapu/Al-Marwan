@@ -1,5 +1,6 @@
 import React from "react";
 import { Typography, Space, Divider, Button } from "antd";
+import { useMediaQuery } from "react-responsive";
 const { Text, Title } = Typography;
 
 function TextContent({
@@ -11,17 +12,28 @@ function TextContent({
   buttonText,
   horizontalContent,
 }) {
+  const isMobile = useMediaQuery({ maxWidth: 800 });
+
   return (
     <>
-      <div className="text-content">
-        <Text className={`text-color-${color} text-uppercase`}>{header}</Text>
-        <Title className={`text-color-${color}`} style={{ fontSize: "36px" }}>{title}</Title>
-        <div dangerouslySetInnerHTML={{ __html: description }} />
+      <div className={isMobile ? "text-content-mobile" : "text-content"}>
+        <Text className={`text-color-${color} text-uppercase tiny-label`}>
+          {header}
+        </Text>
+        <Text
+          className={`h4 text-color-${color}`}
+          style={{ display: "block", marginTop: "20px", marginBottom: "16px" }}
+        >
+          {title}
+        </Text>
+        <Text className={`paragraph_style text-color-${color}`}>
+          {description}
+        </Text>
         {buttonText != null && (
           <Button className="button-fill">VIEW our projects</Button>
         )}
       </div>
-      {horizontalContent != null && (
+      {!isMobile && horizontalContent != null && (
         <div>
           <Space
             direction="horizontal"
@@ -30,9 +42,12 @@ function TextContent({
           >
             {horizontalContent.map((elm, i) => (
               <>
-                <Text className={`text-color-${color} font-size-11`}>{elm}</Text>
+                <Text className={`text-color-${color} tiny-label`}>{elm}</Text>
                 {horizontalContent.length !== i + 1 && (
-                  <Divider type="vertical" className={`background-color-${bg}`} />
+                  <Divider
+                    type="vertical"
+                    className={`background-color-${bg}`}
+                  />
                 )}
               </>
             ))}

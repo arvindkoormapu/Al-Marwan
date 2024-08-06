@@ -1,80 +1,100 @@
 import React from "react";
 import { Layout, Image, Typography, Row, Col, Space } from "antd";
+import { useMediaQuery } from "react-responsive";
 const { Text, Paragraph } = Typography;
 const { Footer } = Layout;
 
 function FooterComponent() {
+  const isMobile = useMediaQuery({ maxWidth: 800 });
   return (
-    <Footer className="footer">
-      <Row gutter={48} style={{ padding: "78px 0px" }}>
-        <Col span={6}>
-          <Space direction="vertical">
-            <Text className="footer-menu-link">Approach</Text>
-            <Text className="footer-menu-link">Projects</Text>
-            <Text className="footer-menu-link">About</Text>
-            <Text className="footer-menu-link">Enquire</Text>
-            <Text className="footer-menu-link">Al Marwan Group</Text>
+    <Footer className={isMobile ? "footer-mobile" : "footer"}>
+      <Row
+        gutter={isMobile ? 16 : 48}
+        style={{ padding: isMobile ? "78px 0px 0px" : "78px 0px" }}
+        justify="start"
+      >
+        <Col span={isMobile ? 24 : 6} style={{ textAlign: "left" }}>
+          <Space direction="vertical" style={{padding: isMobile ? '20px 0px': '0px'}}>
+            <Text className="h5 footer-menu-link">Approach</Text>
+            <Text className="h5 footer-menu-link">Projects</Text>
+            <Text className="h5 footer-menu-link">About</Text>
+            <Text className="h5 footer-menu-link">Enquire</Text>
+            <Text className="h5 footer-menu-link">Al Marwan Group</Text>
           </Space>
         </Col>
-        <Col span={6}>
-          <Space direction="vertical">
-            <Text className="footer-menu-header">CONTACT</Text>
+        <Col span={isMobile ? 24 : 6} style={{ textAlign: "left" }}>
+          <Space direction="vertical" style={{padding: isMobile ? '20px 0px': '0px'}}>
+            <Text className="tiny-label footer-menu-header">CONTACT</Text>
             <Row>
-              <Col>
-                <Text className="left-text">T</Text>
+              <Col style={{ width: "28px" }}>
+                <Text className="tiny-label left-text text-uppercase">T</Text>
               </Col>
               <Col>
-                <Text className="right-text">+97 (0)37 4939 934</Text>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Text className="left-text">E</Text>
-              </Col>
-              <Col>
-                <Text className="right-text">info@almarwan.dev</Text>
+                <Text className="tiny-label right-text text-uppercase">
+                  +97 (0)37 4939 934
+                </Text>
               </Col>
             </Row>
             <Row>
-              <Col>
-                <Text className="left-text">W</Text>
+              <Col style={{ width: "28px" }}>
+                <Text className="tiny-label left-text text-uppercase">E</Text>
               </Col>
               <Col>
-                <Text className="right-text">Www.almarwan.dev</Text>
-              </Col>
-            </Row>
-          </Space>
-        </Col>
-        <Col span={6}>
-          <Space direction="vertical">
-            <Text className="footer-menu-header">HOURS</Text>
-            <Row className="footer-row">
-              <Col>
-                <Text className="left-text-col">Mon - Sat</Text>
-              </Col>
-              <Col>
-                <Text className="right-text-col">09:00 - 04:00pm</Text>
+                <Text className="tiny-label right-text text-uppercase">
+                  info@almarwan.dev
+                </Text>
               </Col>
             </Row>
-            <Row className="footer-row">
-              <Col>
-                <Text className="left-text-col">Sun</Text>
+            <Row>
+              <Col style={{ width: "28px" }}>
+                <Text className="tiny-label left-text text-uppercase">W</Text>
               </Col>
               <Col>
-                <Text className="right-text-col">09:00 - 02:00pm</Text>
+                <Text className="tiny-label right-text text-uppercase">
+                  Www.almarwan.dev
+                </Text>
               </Col>
             </Row>
           </Space>
         </Col>
-        <Col span={6}>
-          <Space direction="vertical">
-            <Text className="footer-menu-header">ADDRESS</Text>
-            <Row>
+        <Col span={isMobile ? 24 : 6} style={{ textAlign: "left" }}>
+          <Space direction="vertical" style={{padding: isMobile ? '20px 0px': '0px'}}>
+            <Text className="tiny-label footer-menu-header">HOURS</Text>
+            <Row className="footer-row" justify={isMobile ? "center" : "start"}>
+              <Col style={{ width: "76px" }}>
+                <Text className="tiny-label left-text-col">Mon - Sat</Text>
+              </Col>
               <Col>
-                <Paragraph className="footer-text">Unit 5</Paragraph>
-                <Paragraph className="footer-text">Waterfront place</Paragraph>
-                <Paragraph className="footer-text">Sharjah,</Paragraph>
-                <Paragraph className="footer-text">
+                <Text className="tiny-label right-text-col">
+                  09:00 - 04:00pm
+                </Text>
+              </Col>
+            </Row>
+            <Row className="footer-row" justify={isMobile ? "center" : "start"}>
+              <Col style={{ width: "76px" }}>
+                <Text className="tiny-label left-text-col">Sun</Text>
+              </Col>
+              <Col>
+                <Text className="tiny-label right-text-col">
+                  09:00 - 02:00pm
+                </Text>
+              </Col>
+            </Row>
+          </Space>
+        </Col>
+        <Col span={isMobile ? 24 : 6} style={{ textAlign: "left" }}>
+          <Space direction="vertical" style={{padding: isMobile ? '20px 0px': '0px'}}>
+            <Text className="tiny-label footer-menu-header">ADDRESS</Text>
+            <Row justify={isMobile ? "center" : "start"}>
+              <Col>
+                <Paragraph className="tiny-label footer-text">Unit 5</Paragraph>
+                <Paragraph className="tiny-label footer-text">
+                  Waterfront place
+                </Paragraph>
+                <Paragraph className=" tiny-label footer-text">
+                  Sharjah,
+                </Paragraph>
+                <Paragraph className="tiny-label footer-text">
                   United Arab Emirates
                 </Paragraph>
               </Col>
@@ -82,28 +102,39 @@ function FooterComponent() {
           </Space>
         </Col>
       </Row>
-      <Row justify="center" align="middle" className="image-row">
-        <Col className="image-col">
-          <Image
-            src={require("../images/almarwan_footer.png")}
-            preview={false}
-            className="full-width-image"
-          />
-        </Col>
-      </Row>
+      {!isMobile && (
+        <Row justify="center" align="middle" className="image-row">
+          <Col className="image-col">
+            <Image
+              src={require("../images/almarwan_footer.png")}
+              preview={false}
+              className="full-width-image"
+              style={{ maxWidth: isMobile ? "100%" : "auto" }}
+            />
+          </Col>
+        </Row>
+      )}
       <Row
         gutter={0}
         style={{
-          paddingTop: "80px",
+          paddingTop: isMobile ? "30px" : "80px",
           paddingBottom: "24px",
+          textAlign: "left",
         }}
       >
-        <Col span={12}>
-          <Text className="footer-link pr">Terms and conditions</Text>
-          <Text className="footer-link">Privacy policy</Text>
+        <Col span={isMobile ? 24 : 12} style={{display: 'flex'}}>
+          <div>
+            <Text className="tiny-label footer-link">Terms and conditions</Text>
+          </div>
+          <div style={{ paddingLeft: "40px" }}>
+            <Text className="tiny-label footer-link">Privacy policy</Text>
+          </div>
         </Col>
-        <Col span={12} className="align-right">
-          <Text className="footer-link">
+        <Col
+          span={isMobile ? 24 : 12}
+          className={isMobile ? "align-center" : "align-right"}
+        >
+          <Text className="tiny-label footer-link">
             Al Marwan Developments All Rights Reserved 2024
           </Text>
         </Col>

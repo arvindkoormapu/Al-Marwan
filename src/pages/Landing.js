@@ -5,6 +5,7 @@ import FooterComponent from "../components/Footer";
 import TextContent from "../components/TextContent";
 import Carousel from "../components/Carousel";
 import Consultation from "../components/Consultation";
+import { useMediaQuery } from "react-responsive";
 
 const { Title, Text } = Typography;
 
@@ -30,6 +31,7 @@ const slides = [
 ];
 
 function Landing() {
+  const isMobile = useMediaQuery({ maxWidth: 800 });
   const scrollToElement = (elementName) => {
     scroller.scrollTo(elementName, {
       duration: 800,
@@ -41,20 +43,23 @@ function Landing() {
   return (
     <>
       <Carousel slides={slides} scrollToElement={scrollToElement} />
-      <Element name="approach" className="section our-approach">
+      {/* <Element name="approach" className="section our-approach">
         <Row gutter={0}>
-          <Col span={10} style={{ display: "flex", flexDirection: "column" }}>
+          <Col
+            span={isMobile ? 24 : 10}
+            style={{ display: "flex", flexDirection: "column" }}
+          >
             <TextContent
               bg="light"
               color="dark"
               header="OUR APPROACH"
               title="Designed living for a global, innovative customer."
-              description=" Approachability, value and life balance are created long termby the intuitive design solutions of today."
+              description="Approachability, value and life balance are created long term by the intuitive design solutions of today."
               buttonText="VIEW our projects"
             />
           </Col>
           <Col
-            span={14}
+            span={isMobile ? 24 : 14}
             style={{
               display: "flex",
               flexDirection: "column",
@@ -64,21 +69,25 @@ function Landing() {
             <div className="our-approach-right-content">
               <div
                 style={{
-                  marginRight: "40px",
+                  marginRight: isMobile ? "0px" : "40px",
                   display: "flex",
                   alignItems: "center",
+                  flexDirection: isMobile ? "column" : "row",
                 }}
               >
                 <Image
                   width={153}
                   src={require("../images/Group 8.png")}
                   preview={false}
-                  style={{ position: "relative", right: "-40px" }}
+                  style={{
+                    position: "relative",
+                    right: isMobile ? "0px" : "-40px",
+                  }}
                 />
                 <div>
                   <Image
-                    width={400}
-                    height={583}
+                    width={isMobile ? 300 : 400}
+                    height={isMobile ? 450 : 583}
                     src={require("../images/naya.jpeg")}
                     preview={false}
                   />
@@ -87,16 +96,17 @@ function Landing() {
                       marginTop: "24px",
                       display: "block",
                       color: "#604D46",
+                      textAlign: isMobile ? "center" : "left",
                     }}
                   >
                     NAYA
                   </Text>
                 </div>
               </div>
-              <div>
+              <div style={{ marginTop: isMobile ? "24px" : "0px" }}>
                 <Image
-                  width={370}
-                  height={507}
+                  width={isMobile ? 300 : 370}
+                  height={isMobile ? 450 : 507}
                   src={require("../images/district11.jpeg")}
                   preview={false}
                 />
@@ -105,6 +115,7 @@ function Landing() {
                     marginTop: "24px",
                     display: "block",
                     color: "#604D46",
+                    textAlign: isMobile ? "center" : "left",
                   }}
                 >
                   District 11
@@ -113,7 +124,7 @@ function Landing() {
             </div>
           </Col>
         </Row>
-      </Element>
+      </Element> */}
 
       <Element name="project" className="section explore-projects">
         <div
@@ -121,11 +132,12 @@ function Landing() {
             height: "100vh",
             display: "flex",
             flexDirection: "column",
+            padding: isMobile ? "20px" : "80px",
           }}
         >
           <div
             style={{
-              paddingTop: "138px",
+              paddingTop: isMobile ? "50px" : "40px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -137,7 +149,7 @@ function Landing() {
               style={{ textAlign: "center" }}
             >
               <Col span={24}>
-                <Title style={{ color: "#EAE5DD" }}>
+                <Title className="h4" style={{ color: "#EAE5DD" }}>
                   Creating real estate for a greater collective experience
                 </Title>
               </Col>
@@ -148,14 +160,14 @@ function Landing() {
           </div>
           <div
             style={{
-              flex: 1,
+              flex: "0 1 50%",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
             <Image
-              width={391}
+              width={isMobile ? 300 : 391}
               src={require("../images/Layer_1.png")}
               preview={false}
               style={{}}
@@ -164,43 +176,62 @@ function Landing() {
         </div>
       </Element>
 
-      <Element name="living" className="section intuitive-living">
-        <Row gutter={0}>
-          <Col span={12} style={{ display: "flex", flexDirection: "column" }}>
+      <Element
+        name="living"
+        className={isMobile ? "intuitive-living" : "section intuitive-living"}
+      >
+        <Row
+          gutter={0}
+          style={{ flexDirection: isMobile ? "column-reverse" : "row" }}
+        >
+          <Col
+            span={isMobile ? 24 : 12}
+            style={{ display: "flex", flexDirection: "column" }}
+          >
             <TextContent
               bg="light"
               color="light"
               header="INTUITIVE LIVING"
               title="Our developments are about purpose driven design"
-              description={`<Paragraph style='line-height: 23px' class='text-color-light'>This is the practice of observation, listening and alignment. Creating real estate for a greater collective experience rather than conforming to external expectations.</Paragraph>`}
+              description="This is the practice of observation, listening and alignment. Creating real estate for a greater collective experience rather than conforming to external expectations"
               horizontalContent={["RESIDENTIAL", "NEW BUILD", "SUSTAINABLE"]}
             />
           </Col>
-          <Col span={12}>
+          <Col span={isMobile ? 24 : 12}>
             <Image
+              width={"100%"}
+              height={isMobile ? "392px" : "100vh"}
               src={require("../images/living.jpeg")}
               preview={false}
-              style={{ height: "100vh", objectFit: "cover" }}
+              style={{
+                objectFit: "cover",
+              }}
             />
           </Col>
         </Row>
       </Element>
 
-      <Element name="lasting_value" className="section lasting_value">
+      <Element
+        name="lasting_value"
+        className={isMobile ? "lasting_value" : "section lasting_value"}
+      >
         <Row gutter={0}>
-          <Col span={12}>
+          <Col span={isMobile ? 24 : 12}>
             <Image
+              width={"100%"}
+              height={isMobile ? "392px" : "100vh"}
               src={require("../images/lasting_value.jpeg")}
               preview={false}
-              style={{ height: "100vh", objectFit: "cover" }}
+              style={{
+                objectFit: "cover",
+              }}
             />
           </Col>
           <Col
-            span={12}
+            span={isMobile ? 24 : 12}
             style={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
             }}
           >
             <TextContent
@@ -208,14 +239,7 @@ function Landing() {
               color="dark"
               header="lasting value"
               title="Intuitive Living creates a demonstrate-able value impact in three ways:"
-              description={`
-                    <Text class='text-color-dark text-uppercase'>retention</Text>
-                    <Paragraph style='display: block; padding: 16px 0; line-height: 23px'>We create development solutions that are designed for exactly how people desire to live, work and experience.</Paragraph>
-                    <Text class='text-color-dark text-uppercase'>Investment power</Text>
-                    <Paragraph style='display: block; padding: 16px 0; line-height: 23px'>We create development solutions that are designed for exactly how people desire to live, work and experience.</Paragraph>
-                    <Text class='text-color-dark text-uppercase'>Sales confidence</Text>
-                    <Paragraph style='display: block; padding: 16px 0; line-height: 23px'>We create development solutions that are designed for exactly how people desire to live, work and experience.</Paragraph>
-                  `}
+              description="We create development solutions that are designed for exactly how people desire to live, work and experience."
               horizontalContent={["RESIDENTIAL", "NEW BUILD", "SUSTAINABLE"]}
             />
           </Col>

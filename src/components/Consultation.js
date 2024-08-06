@@ -1,7 +1,9 @@
 import { Button, Typography, Row, Col, Form, Input } from "antd";
+import { useMediaQuery } from 'react-responsive';
 const { Text, Paragraph } = Typography;
 
 function Consultation() {
+  const isMobile = useMediaQuery({ maxWidth: 800 });
   const onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -9,17 +11,20 @@ function Consultation() {
   return (
     <Row gutter={0} style={{ height: "100%", alignItems: "center" }}>
       <Col
-        span={12}
+        span={isMobile ? 24 : 12}
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          paddingLeft: isMobile ? "20px" : "80px",
+          paddingRight: isMobile ? "20px" : "0",
+          textAlign: isMobile ? "center" : "left",
         }}
       >
-        <div style={{ paddingLeft: "80px", width: "270px" }}>
+        <div style={{ width: isMobile ? "100%" : "270px", margin: isMobile ? "0 auto" : "0" }}>
           <Text
             className="text-color-dark"
-            style={{ fontSize: "42px", lineHeight: "52px" }}
+            style={{ fontSize: isMobile ? "32px" : "42px", lineHeight: isMobile ? "40px" : "52px" }}
           >
             Book a free consultation
           </Text>
@@ -33,16 +38,15 @@ function Consultation() {
               letterSpacing: "0.2px",
             }}
           >
-            One of our experts will get in touch within 24 hours to book an
-            appointment.
+            One of our experts will get in touch within 24 hours to book an appointment.
           </Paragraph>
         </div>
       </Col>
-      <Col span={12}>
+      <Col span={isMobile ? 24 : 12}>
         <Form
           name="basic"
           onFinish={onFinish}
-          style={{ maxWidth: "399px", margin: "0 auto" }}
+          style={{ maxWidth: "399px", margin: isMobile ? "0 20px" : "0 auto" }}
         >
           <Form.Item
             name="fullname"
@@ -56,7 +60,7 @@ function Consultation() {
             <Input
               placeholder="Full Name"
               style={{
-                width: "399px",
+                width: "100%",
                 borderBottom: "1px solid #58524D",
                 borderTop: "none",
                 borderLeft: "none",
@@ -87,7 +91,7 @@ function Consultation() {
             <Input
               placeholder="Email"
               style={{
-                width: "399px",
+                width: "100%",
                 borderBottom: "1px solid #58524D",
                 borderTop: "none",
                 borderLeft: "none",
@@ -111,7 +115,7 @@ function Consultation() {
               type="primary"
               htmlType="submit"
               style={{
-                width: "399px",
+                width: "100%",
                 textTransform: "uppercase",
                 fontSize: "11px",
                 letterSpacing: "1",

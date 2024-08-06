@@ -1,15 +1,18 @@
 import React from "react";
 import { Layout, Image, Button } from "antd";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 const { Header } = Layout;
 
 function HeaderComponent({ toggleNavigation, colour }) {
+  const isMobile = useMediaQuery({ maxWidth: 800 });
+
   return (
     <Header
       className="site-layout-background"
       style={{
-        padding: "0 80px",
+        padding: isMobile ? "0 20px" : "0 80px",
       }}
     >
       <Button
@@ -48,7 +51,7 @@ function HeaderComponent({ toggleNavigation, colour }) {
         )}
       </div>
       <div style={{ color: "#fff", zIndex: 3 }}>
-        <Link to="/contact" style={{ color: colour === 'light' ? '#fff' : '#4D4E4E' }}>
+        <Link to="/contact" className="label" style={{ color: colour === 'light' ? '#fff' : '#4D4E4E' }}>
           Enquire
         </Link>
       </div>
