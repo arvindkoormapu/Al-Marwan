@@ -43,7 +43,7 @@ function Landing() {
   return (
     <>
       <Carousel slides={slides} scrollToElement={scrollToElement} />
-      {/* <Element name="approach" className="section our-approach">
+      <Element name="approach" className="section our-approach">
         <Row gutter={0}>
           <Col
             span={isMobile ? 24 : 10}
@@ -66,65 +66,76 @@ function Landing() {
               alignItems: "center",
             }}
           >
-            <div className="our-approach-right-content">
-              <div
-                style={{
-                  marginRight: isMobile ? "0px" : "40px",
-                  display: "flex",
-                  alignItems: "center",
-                  flexDirection: isMobile ? "column" : "row",
-                }}
-              >
-                <Image
-                  width={153}
-                  src={require("../images/Group 8.png")}
-                  preview={false}
-                  style={{
-                    position: "relative",
-                    right: isMobile ? "0px" : "-40px",
-                  }}
-                />
+            <Row
+              gutter={[32, 0]}
+              style={{
+                marginRight: "0px !important",
+                display: "flex",
+                alignItems: !isMobile && "center",
+              }}
+            >
+              {!isMobile && (
+                <Col span={4} style={{paddingLeft: '0px !important', paddingRight: '0px !important'}}>
+                  <Image
+                    src={require("../images/Group 8.png")}
+                    preview={false}
+                    style={{
+                      position: "relative",
+                      right: isMobile ? "0px" : "-10px",
+                      width: '153px'
+                    }}
+                  />
+                </Col>
+              )}
+              <Col span={isMobile ? 20 : 10} style={{paddingLeft: isMobile && '36px'}}>
                 <div>
                   <Image
-                    width={isMobile ? 300 : 400}
+                    width={"100%"}
                     height={isMobile ? 450 : 583}
                     src={require("../images/naya.jpeg")}
                     preview={false}
+                    style={{ objectFit: "cover" }}
                   />
                   <Text
                     style={{
                       marginTop: "24px",
                       display: "block",
                       color: "#604D46",
-                      textAlign: isMobile ? "center" : "left",
+                      textTransform: "uppercase",
                     }}
+                    className="tiny-label"
                   >
                     NAYA
                   </Text>
                 </div>
-              </div>
-              <div style={{ marginTop: isMobile ? "24px" : "0px" }}>
-                <Image
-                  width={isMobile ? 300 : 370}
-                  height={isMobile ? 450 : 507}
-                  src={require("../images/district11.jpeg")}
-                  preview={false}
-                />
-                <Text
-                  style={{
-                    marginTop: "24px",
-                    display: "block",
-                    color: "#604D46",
-                    textAlign: isMobile ? "center" : "left",
-                  }}
-                >
-                  District 11
-                </Text>
-              </div>
-            </div>
+              </Col>
+              <Col span={isMobile ? 4 : 10} style={{ paddingRight: "0px !important" }}>
+                <div style={{ marginTop: !isMobile && "-75px" }}>
+                  <Image
+                    width={"100%"}
+                    height={isMobile ? 400 : 507}
+                    src={require("../images/district11.jpeg")}
+                    preview={false}
+                    style={{ objectFit: "cover" }}
+                  />
+                  <Text
+                    style={{
+                      marginTop: "24px",
+                      display: "block",
+                      color: "#604D46",
+                      textTransform: "uppercase",
+                      whiteSpace: 'nowrap'
+                    }}
+                    className="tiny-label"
+                  >
+                    District 11
+                  </Text>
+                </div>
+              </Col>
+            </Row>
           </Col>
         </Row>
-      </Element> */}
+      </Element>
 
       <Element name="project" className="section explore-projects">
         <div
@@ -246,7 +257,10 @@ function Landing() {
         </Row>
       </Element>
 
-      <Element name="enquire" className={isMobile ? "enquire-mobile" : "enquire"}>
+      <Element
+        name="enquire"
+        className={isMobile ? "enquire-mobile" : "enquire"}
+      >
         <Consultation />
       </Element>
       <FooterComponent />

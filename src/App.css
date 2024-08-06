@@ -227,8 +227,6 @@ html,
   margin: 50px 0;
 }
 
-
-
 .our-approach-right-content {
   display: flex;
 }
@@ -250,9 +248,9 @@ html,
   background: #565656;
   color: #fff;
   text-transform: uppercase;
-  font-size: 11px;
   border: none;
   margin-top: 28px;
+  display: block;
 }
 
 .button-outline {

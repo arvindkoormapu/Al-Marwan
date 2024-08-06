@@ -30,7 +30,7 @@ function TextContent({
           {description}
         </Text>
         {buttonText != null && (
-          <Button className="button-fill">VIEW our projects</Button>
+          <Button className="tiny-label button-fill">VIEW our projects</Button>
         )}
       </div>
       {!isMobile && horizontalContent != null && (
