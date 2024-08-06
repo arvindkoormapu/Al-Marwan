@@ -6,6 +6,9 @@ import TextContent from "../components/TextContent";
 import Carousel from "../components/Carousel";
 import Consultation from "../components/Consultation";
 import { useMediaQuery } from "react-responsive";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css"; // Import core Swiper styles
+import "swiper/css/navigation";
 
 const { Title, Text } = Typography;
 
@@ -30,8 +33,16 @@ const slides = [
   },
 ];
 
+const images = [
+  { src: require("../images/naya.jpeg"), label: "NAYA" },
+  { src: require("../images/district11.jpeg"), label: "District 11" },
+  { src: require("../images/naya.jpeg"), label: "NAYA" },
+  { src: require("../images/district11.jpeg"), label: "District 11" },
+];
+
 function Landing() {
   const isMobile = useMediaQuery({ maxWidth: 800 });
+
   const scrollToElement = (elementName) => {
     scroller.scrollTo(elementName, {
       duration: 800,
@@ -60,77 +71,100 @@ function Landing() {
           </Col>
           <Col
             span={isMobile ? 24 : 14}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
+            // style={{
+            //   display: "flex",
+            //   flexDirection: "column",
+            //   alignItems: "center",
+            // }}
           >
             <Row
               gutter={[32, 0]}
               style={{
                 marginRight: "0px !important",
                 display: "flex",
-                alignItems: !isMobile && "center",
+                alignItems: "center",
               }}
             >
               {!isMobile && (
-                <Col span={4} style={{paddingLeft: '0px !important', paddingRight: '0px !important'}}>
+                <Col
+                  span={4}
+                  style={{
+                    paddingLeft: "0px !important",
+                    paddingRight: "0px !important",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
                   <Image
                     src={require("../images/Group 8.png")}
                     preview={false}
                     style={{
                       position: "relative",
                       right: isMobile ? "0px" : "-10px",
-                      width: '153px'
+                      width: "153px",
                     }}
                   />
                 </Col>
               )}
-              <Col span={isMobile ? 20 : 10} style={{paddingLeft: isMobile && '36px'}}>
-                <div>
-                  <Image
-                    width={"100%"}
-                    height={isMobile ? 450 : 583}
-                    src={require("../images/naya.jpeg")}
-                    preview={false}
-                    style={{ objectFit: "cover" }}
-                  />
-                  <Text
-                    style={{
-                      marginTop: "24px",
-                      display: "block",
-                      color: "#604D46",
-                      textTransform: "uppercase",
-                    }}
-                    className="tiny-label"
-                  >
-                    NAYA
-                  </Text>
-                </div>
-              </Col>
-              <Col span={isMobile ? 4 : 10} style={{ paddingRight: "0px !important" }}>
-                <div style={{ marginTop: !isMobile && "-75px" }}>
-                  <Image
-                    width={"100%"}
-                    height={isMobile ? 400 : 507}
-                    src={require("../images/district11.jpeg")}
-                    preview={false}
-                    style={{ objectFit: "cover" }}
-                  />
-                  <Text
-                    style={{
-                      marginTop: "24px",
-                      display: "block",
-                      color: "#604D46",
-                      textTransform: "uppercase",
-                      whiteSpace: 'nowrap'
-                    }}
-                    className="tiny-label"
-                  >
-                    District 11
-                  </Text>
-                </div>
+              <Col
+                span={isMobile ? 24 : 20}
+                style={{ paddingLeft: isMobile ? '36px' : "0px", paddingRight: "0px" }}
+              >
+                <Swiper
+                  spaceBetween={10}
+                  slidesPerView={2}
+                  centeredSlides={false}
+                  grabCursor={true}
+                  style={{ width: "100%" }}
+                  // breakpoints={{
+                  //   640: {
+                  //     slidesPerView: 2,
+                  //     spaceBetween: 20,
+                  //   },
+                  //   768: {
+                  //     slidesPerView: 2,
+                  //     spaceBetween: 20,
+                  //   },
+                  //   1024: {
+                  //     slidesPerView: 2,
+                  //     spaceBetween: 20,
+                  //   },
+                  // }}
+                >
+                  {images.map((image, index) => (
+                    <SwiperSlide key={index}>
+                      <div
+                        style={{
+                          paddingLeft: isMobile && index % 2 === 0 ? "0px" : 0,
+                          paddingRight:
+                            !isMobile && index % 2 !== 0 ? "0px" : 0,
+                        }}
+                      >
+                        <Image
+                          width={"100%"}
+                          height={isMobile ? 360 : 507}
+                          src={image.src}
+                          preview={false}
+                          style={{ objectFit: "cover" }}
+                        />
+                        <Text
+                          style={{
+                            marginTop: "24px",
+                            display: "block",
+                            color: "#604D46",
+                            textTransform: "uppercase",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                          }}
+                          className="tiny-label"
+                        >
+                          {image.label}
+                        </Text>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
               </Col>
             </Row>
           </Col>
