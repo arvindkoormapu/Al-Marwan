@@ -1,13 +1,15 @@
-import { Row, Col, Typography, Divider, Image } from "antd";
+import { Row, Col, Typography, Divider, Image, Space } from "antd";
+import { useMediaQuery } from "react-responsive";
 import FooterComponent from "../components/Footer";
 import Consultation from "../components/Consultation";
 import TitleParagraph from "../components/TitleParagraph";
 import ProjectCard from "../components/ProjectCard";
-const { Text, Title, Paragraph } = Typography;
+const { Text, Paragraph } = Typography;
 
 const horizontalContent = ["RESIDENTIAL", "NEW BUILD", "SUSTAINABLE"];
 
 function ProjectDetails() {
+  const isMobile = useMediaQuery({ maxWidth: 800 });
   return (
     <>
       <div
@@ -23,31 +25,41 @@ function ProjectDetails() {
       >
         <Text
           style={{
-            fontSize: "11px",
             color: "#fff",
             textTransform: "uppercase",
           }}
+          className="tiny-lebel"
         >
           Project
         </Text>
-        <Title style={{ fontSize: "86px", marginTop: "0px", color: "#fff" }}>
+        <Text
+          style={{
+            marginTop: "0px",
+            color: "#fff",
+          }}
+          className={isMobile ? "h1-mobile" : "h1"}
+        >
           District 11
-        </Title>
+        </Text>
       </div>
 
-      <div style={{ padding: "60px 80px" }}>
-        <Row gutter={48}>
-          <Col span={12} className="flex-justify-content-space-between ">
+      <div style={{ padding: isMobile ? "20px" : "60px 80px" }}>
+        <Row gutter={isMobile ? 16 : 48}>
+          <Col
+            span={isMobile ? 24 : 12}
+            className="flex-justify-content-space-between"
+          >
             <div>
-              <Text style={{ color: "#40404080" }} className="text-uppercase">
+              <Text
+                style={{ color: "#40404080" }}
+                className="tiny-label text-uppercase"
+              >
                 OVERVIEW
               </Text>
               <Paragraph
-                className="text-color-dark"
+                className="text-color-dark paragraph-large "
                 style={{
-                  fontSize: "18px",
-                  lineHeight: "28px",
-                  paddingRight: "35px",
+                  paddingRight: isMobile ? "0" : "35px",
                   marginTop: "14px",
                 }}
               >
@@ -59,27 +71,36 @@ function ProjectDetails() {
                 totam rem aperiam, eaque ipsa quae
               </Paragraph>
             </div>
+
             <div>
-              {horizontalContent.map((elm, i) => (
-                <>
-                  <Text className={`text-color-dark font-size-11`}>{elm}</Text>
-                  {horizontalContent.length !== i + 1 && (
-                    <Divider
-                      type="vertical"
-                      className={`background-color-dark`}
-                    />
-                  )}
-                </>
-              ))}
+              <Space
+                direction="horizontal"
+                className={!isMobile && "pl-80"}
+                style={{ marginBottom: "40px" }}
+              >
+                {horizontalContent.map((elm, i) => (
+                  <>
+                    <Text className={`text-color-dark tiny-label`}>
+                      {elm}
+                    </Text>
+                    {horizontalContent.length !== i + 1 && (
+                      <Divider
+                        type="vertical"
+                        className={`background-color-dark`}
+                      />
+                    )}
+                  </>
+                ))}
+              </Space>
             </div>
           </Col>
-          <Col span={12}>
+          <Col span={isMobile ? 24 : 12}>
             <Row>
               <Col span={12}>
                 <div className="flex-direction-column">
                   <Text
                     style={{ color: "#40404080" }}
-                    className="text-uppercase font-size-11"
+                    className="text-uppercase tiny-label"
                   >
                     Size
                   </Text>
@@ -91,7 +112,7 @@ function ProjectDetails() {
                 >
                   <Text
                     style={{ color: "#40404080" }}
-                    className="text-uppercase font-size-11"
+                    className="text-uppercase tiny-label"
                   >
                     PROJECT LENGTH
                   </Text>
@@ -102,7 +123,7 @@ function ProjectDetails() {
                 <div className="flex-direction-column">
                   <Text
                     style={{ color: "#40404080" }}
-                    className="text-uppercase font-size-11"
+                    className="text-uppercase tiny-label"
                   >
                     LOCATION
                   </Text>
@@ -114,7 +135,7 @@ function ProjectDetails() {
                 >
                   <Text
                     style={{ color: "#40404080" }}
-                    className="text-uppercase font-size-11"
+                    className="text-uppercase tiny-label"
                   >
                     PROJECT TYPE
                   </Text>
@@ -124,7 +145,7 @@ function ProjectDetails() {
             </Row>
             <div style={{ marginTop: "30px" }}>
               <div className="floor-plan">
-                <Text style={{ color: "#40404080" }} className="font-size-11">
+                <Text style={{ color: "#40404080" }} className="tiny-label">
                   FLOOR PLAN
                 </Text>
                 <Image
@@ -135,7 +156,7 @@ function ProjectDetails() {
                 />
               </div>
               <div className="floor-plan floor-plan-no-border-top">
-                <Text style={{ color: "#40404080" }} className="font-size-11">
+                <Text style={{ color: "#40404080" }} className="tiny-label">
                   LOCATION
                 </Text>
                 <Image
@@ -151,7 +172,7 @@ function ProjectDetails() {
         <div
           style={{
             display: "flex",
-            justifyContent: "flex-end",
+            justifyContent: isMobile ? "center" : "flex-end",
             marginTop: "50px",
             position: "relative",
             zIndex: 1,
@@ -164,8 +185,8 @@ function ProjectDetails() {
             preview={false}
           />
         </div>
-        <Row gutter={16} style={{ marginTop: "-46px" }}>
-          <Col span={12}>
+        <Row gutter={isMobile ? 16 : 48} style={{ marginTop: "-46px" }}>
+          <Col span={isMobile ? 24 : 12}>
             <Image
               style={{ cursor: "pointer" }}
               src={require("../images/Image1.png")}
@@ -183,7 +204,7 @@ function ProjectDetails() {
               </Text>
             </div>
           </Col>
-          <Col span={12}>
+          <Col span={isMobile ? 24 : 12}>
             <Image
               style={{ cursor: "pointer" }}
               src={require("../images/Image2.png")}
@@ -202,14 +223,14 @@ function ProjectDetails() {
         </Row>
 
         <Row>
-          <Col span={12}>
+          <Col span={isMobile ? 24 : 12}>
             <TitleParagraph />
           </Col>
-          <Col span={12}></Col>
+          <Col span={isMobile ? 24 : 12}></Col>
         </Row>
       </div>
 
-      <div style={{ padding: "40px 80px" }}>
+      <div style={{ padding: isMobile ? "20px" : "40px 80px" }}>
         <Image
           style={{ cursor: "pointer" }}
           src={require("../images/Image3.png")}
@@ -226,21 +247,21 @@ function ProjectDetails() {
             All natural and ethically sourced
           </Paragraph>
           <Row>
-            <Col span={12}></Col>
-            <Col span={12}>
+            <Col span={isMobile ? 24 : 12}></Col>
+            <Col span={isMobile ? 24 : 12}>
               <TitleParagraph />
             </Col>
           </Row>
         </div>
       </div>
 
-      <div style={{ padding: "40px 0px" }}>
+      <div style={{ padding: isMobile ? "20px" : "40px 0px" }}>
         <Image
           style={{ cursor: "pointer" }}
           src={require("../images/Image3.png")}
           preview={false}
         />
-        <div style={{ padding: "0px 80px" }}>
+        <div style={{ padding: isMobile ? "20px" : "0px 80px" }}>
           <div style={{ padding: "20px 0px" }}>
             <Text
               className="sustain"
@@ -252,34 +273,34 @@ function ProjectDetails() {
               All natural and ethically sourced
             </Paragraph>
             <Row>
-              <Col span={12}>
+              <Col span={isMobile ? 24 : 12}>
                 <TitleParagraph />
               </Col>
-              <Col span={12}></Col>
+              <Col span={isMobile ? 24 : 12}></Col>
             </Row>
           </div>
         </div>
       </div>
 
-      <div className="enquire">
+      <div className={isMobile ? "enquire-mobile" : "enquire"}>
         <Consultation />
       </div>
 
-      <div style={{ padding: "40px 80px" }}>
+      <div style={{ padding: isMobile ? "20px" : "40px 80px" }}>
         <Text className="h3" style={{ padding: "30px 0px", display: "block" }}>
           Related projects
         </Text>
 
-        <Row gutter={48}>
-          <Col span={12}>
+        <Row gutter={isMobile ? 16 : 48}>
+          <Col span={isMobile ? 24 : 12}>
             <ProjectCard />
           </Col>
-          <Col span={12}>
-            <Row gutter={48}>
-              <Col span={12}>
+          <Col span={isMobile ? 24 : 12}>
+            <Row gutter={isMobile ? 16 : 48}>
+              <Col span={isMobile ? 24 : 12}>
                 <ProjectCard />
               </Col>
-              <Col span={12}>
+              <Col span={isMobile ? 24 : 12}>
                 <ProjectCard />
               </Col>
             </Row>

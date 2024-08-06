@@ -246,7 +246,7 @@ function Landing() {
         </Row>
       </Element>
 
-      <Element name="enquire" className="enquire">
+      <Element name="enquire" className={isMobile ? "enquire-mobile" : "enquire"}>
         <Consultation />
       </Element>
       <FooterComponent />

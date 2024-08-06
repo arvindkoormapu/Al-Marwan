@@ -9,12 +9,14 @@ import {
   Divider,
   Image,
 } from "antd";
+import { useMediaQuery } from "react-responsive";
 import FooterComponent from "../components/Footer";
 const { Text, Title, Paragraph } = Typography;
 
 const { Option } = Select;
 
 function Contact() {
+  const isMobile = useMediaQuery({ maxWidth: 800 });
   const inputStyle = {
     border: "none",
     borderBottom: "1px solid #58524D",
@@ -39,34 +41,34 @@ function Contact() {
   return (
     <>
       <div className="bgm1">
-        <div style={{ maxWidth: "600px", margin: "auto" }}>
+        <div
+          style={{
+            maxWidth: isMobile ? "100%" : "600px",
+            margin: "auto",
+            padding: isMobile ? "0 20px" : "0",
+          }}
+        >
           <div
             style={{
               textAlign: "center",
-              marginTop: "60px",
-              marginBottom: "60px",
+              marginTop: isMobile ? "40px" : "60px",
+              marginBottom: isMobile ? "40px" : "60px",
             }}
           >
+            <Text className={`text-color-dark tiny-label`}>ENQUIRE</Text>
             <Text
-              className={`text-color-dark`}
-              style={{ fontSize: "11px", lineHeight: "16px" }}
-            >
-              ENQUIRE
-            </Text>
-            <Title
-              className={`text-color-dark`}
-              style={{ fontSize: "84px", marginTop: 0 }}
+              className={isMobile ? "text-color-dark get-in-touch" : "text-color-dark h1"}
+              style={{ marginTop: 0, display: 'block' }}
             >
               Get in touch
-            </Title>
+            </Text>
 
             <Paragraph
               className={`text-color-dark`}
               style={{
                 fontSize: "14px",
                 lineHeight: "23px",
-                marginTop: "35px",
-                padding: "0px 135px",
+                padding: isMobile ? "0px 20px" : "0px 135px",
               }}
             >
               Contact us today and let’s start a conversation about your next
@@ -75,7 +77,7 @@ function Contact() {
           </div>
           <Form form={form} layout="vertical">
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={isMobile ? 24 : 12}>
                 <Form.Item
                   name="firstName"
                   rules={[
@@ -89,7 +91,7 @@ function Contact() {
                   />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={isMobile ? 24 : 12}>
                 <Form.Item
                   name="lastName"
                   rules={[{ required: true, message: "Last name is required" }]}
@@ -169,7 +171,7 @@ function Contact() {
                 type="primary"
                 htmlType="submit"
                 className="form-button"
-                style={{ padding: "0 80px" }}
+                style={{ padding: "0 80px", width: isMobile ? "100%" : "auto" }}
               >
                 Submit
               </Button>
@@ -181,15 +183,26 @@ function Contact() {
             className="text-color-dark"
             style={{
               fontSize: "11px",
-              marginTop: "50px",
-              marginBottom: "50px",
+              marginTop: isMobile ? "30px" : "50px",
+              marginBottom: isMobile ? "30px" : "50px",
             }}
           >
             OR CONTACT US DIRECT
           </Divider>
 
-          <Row align="middle" style={{ marginBottom: "70px" }}>
-            <Col span={8} className="justify-content-space-around">
+          <Row
+            align="middle"
+            style={{ marginBottom: isMobile ? "40px" : "70px" }}
+          >
+            <Col
+              span={isMobile ? 12 : 8}
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+                marginBottom: isMobile ? "20px" : "0",
+              }}
+            >
               <Image
                 width={37}
                 height={37}
@@ -198,12 +211,25 @@ function Contact() {
               />
               <Text className="text-color-dark font-size-11">WHATSAPP</Text>
             </Col>
-            <Col span={8} className="justify-content-center-flex">
+            <Col
+              span={isMobile ? 12 : 8}
+              style={{
+                textAlign: isMobile ? "center" : "left",
+                marginBottom: isMobile ? "20px" : "0",
+              }}
+            >
               <Text className="text-color-dark font-size-11">
                 +97 (0)939 494 49592
               </Text>
             </Col>
-            <Col span={8} className="flex-direction-end">
+            <Col
+              span={isMobile ? 24 : 8}
+              style={{
+                display: "flex",
+                justifyContent: isMobile ? "center" : "flex-end",
+                alignItems: "center",
+              }}
+            >
               <Image
                 width={117}
                 height={38}

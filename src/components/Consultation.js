@@ -9,22 +9,20 @@ function Consultation() {
   };
 
   return (
-    <Row gutter={0} style={{ height: "100%", alignItems: "center" }}>
+    <Row gutter={0} style={{ height: "100%", alignItems: isMobile ? "start" : "center" }}>
       <Col
         span={isMobile ? 24 : 12}
         style={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: isMobile ? "start" : "center",
           paddingLeft: isMobile ? "20px" : "80px",
           paddingRight: isMobile ? "20px" : "0",
-          textAlign: isMobile ? "center" : "left",
         }}
       >
-        <div style={{ width: isMobile ? "100%" : "270px", margin: isMobile ? "0 auto" : "0" }}>
+        <div style={{ width: isMobile ? "100%" : "270px" }}>
           <Text
-            className="text-color-dark"
-            style={{ fontSize: isMobile ? "32px" : "42px", lineHeight: isMobile ? "40px" : "52px" }}
+            className="h3 text-color-dark"
           >
             Book a free consultation
           </Text>

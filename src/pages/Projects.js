@@ -1,10 +1,12 @@
 import { Row, Col, Typography, Divider, Image } from "antd";
 import FooterComponent from "../components/Footer";
 import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import ProjectCard from "../components/ProjectCard";
 const { Text, Title, Paragraph } = Typography;
 
 function Projects() {
+  const isMobile = useMediaQuery({ maxWidth: 800 });
   const names = ["District 11", "Naseem", "Naya"];
   const [gridType, setGridType] = useState("grid");
   const [activeProject, setActiveProject] = useState(1);
@@ -17,32 +19,42 @@ function Projects() {
     <>
       <div
         style={{
-          padding: "90px 80px 0px 80px",
+          padding: isMobile ? "20px 20px 0px 20px" : "90px 80px 0px 80px",
         }}
       >
-        <Row align="middle">
-          <Col span={8}>
-            <Title
-              className={`text-color-dark`}
-              style={{ fontSize: "84px", marginTop: 0 }}
-            >
-              Projects
-            </Title>
-          </Col>
-
-          <Col span={8} style={{ display: "flex", justifyContent: "center" }}>
+        <Row style={{ alignItems: "baseline", paddingBottom: "20px" }}>
+          <Col span={isMobile ? 12 : 8}>
             <Text
-              className={`text-color-dark`}
+              className={`text-color-dark  ${isMobile ? "h1-mobile" : "h1"}`}
               style={{
-                fontSize: "11px",
-                lineHeight: "16px",
-                padding: "4px 10px",
-                borderBottom: "1px solid #58524D",
+                marginTop: 0,
+                textAlign: "left",
               }}
             >
-              ALL
+              Projects
             </Text>
-            <Text
+          </Col>
+          {!isMobile && (
+            <Col
+              span={isMobile ? 24 : 8}
+              style={{
+                display: "flex",
+                justifyContent: isMobile ? "center" : "center",
+                marginTop: isMobile ? "20px" : "0",
+              }}
+            >
+              <Text
+                className={`text-color-dark`}
+                style={{
+                  fontSize: "11px",
+                  lineHeight: "16px",
+                  padding: "4px 10px",
+                  borderBottom: "1px solid #58524D",
+                }}
+              >
+                ALL
+              </Text>
+              {/* <Text
               style={{
                 fontSize: "11px",
                 lineHeight: "16px",
@@ -51,15 +63,16 @@ function Projects() {
               }}
             >
               FILTER
-            </Text>
-          </Col>
-
+            </Text> */}
+            </Col>
+          )}
           <Col
-            span={8}
+            span={isMobile ? 12 : 8}
             style={{
               display: "flex",
               justifyContent: "flex-end",
               alignItems: "self-end",
+              marginTop: isMobile ? "20px" : "0",
             }}
           >
             <Text
@@ -121,124 +134,69 @@ function Projects() {
 
         {gridType === "grid" ? (
           <div>
-            <Row gutter={48}>
-              <Col span={12} style={{ paddingBottom: "77px" }}>
+            <Row gutter={isMobile ? 16 : 48}>
+              <Col
+                span={isMobile ? 24 : 12}
+                style={{ paddingBottom: isMobile ? "40px" : "77px" }}
+              >
                 <ProjectCard />
               </Col>
-              <Col span={12} style={{ paddingBottom: "77px" }}>
-                <Image
-                  height={390}
-                  width={"100%"}
-                  src={require("../images/naseem.png")}
-                  preview={false}
-                  style={{ objectFit: "cover" }}
-                />
-                <Row style={{ padding: "32px 0px 0px 10px" }}>
-                  <Col span={2}>
-                    <Text className="font-size-11" style={{ color: "#636363" }}>
-                      02
-                    </Text>
-                  </Col>
-                  <Col span={22}>
-                    <Text
-                      className="font-size-11"
-                      style={{
-                        color: "#636363",
-                        textTransform: "uppercase",
-                        marginBottom: "10px",
-                        display: "block",
-                      }}
-                    >
-                      Naseem
-                    </Text>
-                    <div
-                      style={{ border: "0.5px solid #453D3D", width: "13px" }}
-                    ></div>
-                    <Paragraph
-                      className="font-size-11"
-                      style={{
-                        color: "#636363",
-                        marginTop: "10px",
-                        display: "block",
-                        width: "163px",
-                      }}
-                    >
-                      A huge step in our sustainable journey for the next
-                      decade.
-                    </Paragraph>
-                  </Col>
-                </Row>
+              <Col
+                span={isMobile ? 24 : 12}
+                style={{ paddingBottom: isMobile ? "40px" : "77px" }}
+              >
+                <ProjectCard />
               </Col>
-              <Col span={12} style={{ paddingBottom: "77px" }}>
-                <Image
-                  height={390}
-                  width={"100%"}
-                  src={require("../images/naya.jpeg")}
-                  preview={false}
-                  style={{ objectFit: "cover" }}
-                />
-                <Row style={{ padding: "32px 0px 0px 10px" }}>
-                  <Col span={2}>
-                    <Text className="font-size-11" style={{ color: "#636363" }}>
-                      03
-                    </Text>
-                  </Col>
-                  <Col span={22}>
-                    <Text
-                      className="font-size-11"
-                      style={{
-                        color: "#636363",
-                        textTransform: "uppercase",
-                        marginBottom: "10px",
-                        display: "block",
-                      }}
-                    >
-                      Naya
-                    </Text>
-                    <div
-                      style={{ border: "0.5px solid #453D3D", width: "13px" }}
-                    ></div>
-                    <Paragraph
-                      className="font-size-11"
-                      style={{
-                        color: "#636363",
-                        marginTop: "10px",
-                        display: "block",
-                        width: "163px",
-                      }}
-                    >
-                      A huge step in our sustainable journey for the next
-                      decade.
-                    </Paragraph>
-                  </Col>
-                </Row>
+              <Col
+                span={isMobile ? 24 : 12}
+                style={{ paddingBottom: isMobile ? "40px" : "77px" }}
+              >
+                <ProjectCard />
               </Col>
             </Row>
           </div>
         ) : (
           <div style={{ paddingBottom: "100px" }}>
-            <Row gutter={48}>
-              <Col span={8}>
+            <Row gutter={isMobile ? 16 : 48}>
+              <Col
+                span={isMobile ? 12 : 8}
+                style={{ textAlign: isMobile ? "center" : "left" }}
+              >
                 {names.map((elm, i) => (
                   <Text
-                    className="project-names"
+                    className={isMobile ? "project-names-mobile" :"project-names"}
                     style={{
                       color: activeProject === i + 1 ? "#58524D" : "#BEB2A4",
+                      display: "block",
+                      cursor: "pointer",
+                      marginBottom: isMobile ? "10px" : "0",
                     }}
                     onClick={() => setActiveProject(i + 1)}
+                    key={i}
                   >
                     {elm}
                   </Text>
                 ))}
               </Col>
-              <Col span={16}>
-                <Text className="explore-button">Explore</Text>
+              <Col span={isMobile ? 12 : 16}>
+                <Text
+                  className={isMobile ? "explore-button-mobile" : "explore-button"}
+                  style={{
+                    display: isMobile ? "block" : "inline",
+                    textAlign: isMobile ? "center" : "left",
+                  }}
+                >
+                  Explore
+                </Text>
                 <Image
-                  height={715}
+                  height={isMobile ? 300 : 715}
                   width={"100%"}
                   src={require("../images/district11.jpeg")}
                   preview={false}
-                  style={{ objectFit: "cover" }}
+                  style={{
+                    objectFit: "cover",
+                    marginTop: isMobile ? "10px" : "0",
+                  }}
                 />
               </Col>
             </Row>
