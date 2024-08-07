@@ -52,7 +52,7 @@ function Landing() {
   };
 
   return (
-    <>
+    <div className="landing-page">
       <Carousel slides={slides} scrollToElement={scrollToElement} />
       <Element name="approach" className="section our-approach">
         <Row gutter={0}>
@@ -142,11 +142,11 @@ function Landing() {
                         }}
                       >
                         <Image
-                          width={"100%"}
-                          height={isMobile ? 360 : 507}
+                          // width={"auto"}
+                          // height={isMobile ? 300 : 500}
                           src={image.src}
                           preview={false}
-                          style={{ objectFit: "cover" }}
+                          style={{ objectFit: "cover", aspectRatio: '3/4' }}
                         />
                         <Text
                           style={{
@@ -298,7 +298,7 @@ function Landing() {
         <Consultation />
       </Element>
       <FooterComponent />
-    </>
+    </div>
   );
 }
 
