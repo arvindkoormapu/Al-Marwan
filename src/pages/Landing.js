@@ -54,6 +54,7 @@ function Landing() {
   return (
     <div className="landing-page">
       <Carousel slides={slides} scrollToElement={scrollToElement} />
+      <div className="gradient-overlay"></div>
       <Element name="approach" className="section our-approach">
         <Row gutter={0}>
           <Col
